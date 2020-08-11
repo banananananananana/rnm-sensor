@@ -10,6 +10,8 @@
           {"destination":"www.eb.dk", "description":"ekstrabladet"},
           {"destination":"www.dr.dk", "description":"dr"},
           {"destination":"www.google.dk", "description":"google"}
+          {"destination":"www.jp.dk", "description":"jp"}
+          {"destination":"www.pol.dk", "description":"pol"}
         ]
     }
 }
