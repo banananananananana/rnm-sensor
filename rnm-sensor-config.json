@@ -1,0 +1,14 @@
+{
+    "config": {
+        "ping": [
+          {"destination":"1.1.1.1", "description":"cloudflare"},
+          {"destination":"8.8.8.8", "description":"google"},
+          {"destination":"9.9.9.9", "description":"quad9"}
+        ],
+        "curl": [
+          {"destination":"www.eb.dk", "description":"ekstrabladet"},
+          {"destination":"www.dr.dk", "description":"dr"},
+          {"destination":"www.google.dk", "description":"google"}
+        ]
+    }
+}
