@@ -9,6 +9,7 @@
         "curl": [
           {"destination":"www.eb.dk", "description":"ekstrabladet"},
           {"destination":"www.dr.dk", "description":"dr"},
+          {"destination":"www.tv2.dk", "description":"tv2"},
           {"destination":"www.google.dk", "description":"google"},
           {"destination":"www.jp.dk", "description":"jp"}
         ]
