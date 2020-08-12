@@ -21,7 +21,8 @@ sudo chown ubuntu:ubuntu -R /var/log/rnm-sensor/
 #install package dependencies
 sudo apt install -y libssl-dev autoconf libtool make unzip python3-pip
 
-#install [JC](https://github.com/kellyjonbrazil/jc/blob/master/README.md) which is a tool for parsing cli output in json
+#install JC which is a tool for parsing cli output in json
+#github.com/kellyjonbrazil/jc/blob/master/README.md
 sudo pip3 install jc
 
 #remove pre-packaged curl, and install newest version that has a json write-out option
