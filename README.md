@@ -79,7 +79,7 @@ sudo chown ubuntu:ubuntu -R rnm-sensor/
 sudo chmod +x rnm-sensor/rnm-sensor.sh
 ```
 
-install [filebeat](#ttps://www.elastic.co/guide/en/beats/filebeat/current/setup-repositories.html) for log shipping to your ELK stack 
+install [filebeat](https://www.elastic.co/guide/en/beats/filebeat/current/setup-repositories.html) for log shipping to your ELK stack 
 ```
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 sudo apt-get install apt-transport-https
