@@ -26,18 +26,18 @@ sudo apt update && apt dist-upgrade
 sudo reboot
 ```
 
+Create logging directory and set permissions
+```
+sudo mkdir /var/log/rnm-sensor
+sudo chown ubuntu:ubuntu -R /var/log/rnm-sensor/
+```
+
 Edit your `sudo vi /etc/fstab` file, and add the lines below to the file. 
 It will ensure the logging directories are stored in memory - minimizing the writes to your SD card.
 ```
 tmpfs           /tmp            tmpfs   nosuid,nodev         0       0
 tmpfs           /var/log        tmpfs   nosuid,nodev         0       0
 tmpfs           /var/tmp        tmpfs   nosuid,nodev         0       0
-```
-
-Create logging directory and set permissions
-```
-sudo mkdir /var/log/rnm-sensor
-sudo chown ubuntu:ubuntu -R /var/log/rnm-sensor/
 ```
 
 install package dependencies
