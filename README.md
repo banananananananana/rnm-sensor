@@ -141,3 +141,44 @@ Then start the service
 ```
 sudo systemctl restart filebeat
 ```
+
+
+# Logstash config
+In order to parse the files from your remote sensors, you need to add a config file to your logstash. Here is a config template
+
+```
+input {
+  beats {
+    port => 5044
+  }
+}
+
+filter {
+if [log][file][path] =~ "ping" {
+  split {
+    field => "responses"
+   }
+  date {
+    match => ["responses.timestamp", "UNIX_MS"]
+    target => "@timestamp"
+  }
+ }
+}
+
+filter {
+if [log][file][path] =~ "curl" {
+  date {
+    match => ["curl_timestamp", "UNIX_MS"]
+    target => "@timestamp"
+  }
+ }
+}
+
+
+output {
+      elasticsearch {
+        hosts => ["http://localhost:9200"]
+        index => "beats-rnm-sensor-input-%{+YYYY.MM.dd}"
+      }
+}
+```
