@@ -129,6 +129,15 @@ filebeat.inputs:
 output.logstash:
   hosts: ["your-logstash-host-here:5044"]
 ```
-Then start the service `sudo systemctl start filebeat`
+Make sure to put a # in front of the elasticsearch output - since we will be using logstash to parse the data.
 
+```
+#output.elasticsearch:
+  #  hosts: ["localhost:9200"]
+```
+
+
+Then start the service
+```
+sudo systemctl start filebeat
 ```
