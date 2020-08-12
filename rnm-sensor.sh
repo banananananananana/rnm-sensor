@@ -34,7 +34,7 @@ done &
 
 #start curl loop
 while true; do
-    for line in $(cat rnm-sensor-config.json |  jq -r '.[] | .curl_destinations[] | .destination'); do
+    for line in $(cat /opt/rnm-sensor/rnm-sensor-config.json |  jq -r '.[] | .curl_destinations[] | .destination'); do
         curl -I -s --write-out '%{json}' "$line" -o /dev/null | jq --arg now "$(date +%s%3N)" '. += {"curl_timestamp":$now}' |  jq -c . >>/var/log/rnm-sensor/curl_output-rnm-sensor.log
     done
     sleep 10
