@@ -139,5 +139,5 @@ Make sure to put a # in front of the elasticsearch output - since we will be usi
 
 Then start the service
 ```
-sudo systemctl start filebeat
+sudo systemctl restart filebeat
 ```
