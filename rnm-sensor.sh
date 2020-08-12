@@ -10,7 +10,7 @@ while true; do
     if [ $(jq -r '.[] | .config_file_source[] | .use_remote_config' rnm-sensor-config.json) == true ]
       then
       echo "$(date -u) - remote config file option is set, downloading file..."
-      curl -m 5 -s -o /opt/scripts/rnm-sensor-config.json $(jq -r '.[] | .config_file_source[] | .source' rnm-sensor-config.json)
+      curl -m 5 -s -o /opt/rnm-sensor/rnm-sensor-config.json $(jq -r '.[] | .config_file_source[] | .source' rnm-sensor-config.json)
       fi
   sleep 10
 done &
@@ -20,9 +20,9 @@ sleep 1
 
 #set input file variables
 echo "$(date -u) - setting ping destinations"
-ping_hosts=$(cat /opt/scripts/rnm-sensor-config.json |  jq -r '.[] | .ping_destinations[] | .destination')
+ping_hosts=$(cat /opt/rnm-sensor/rnm-sensor-config.json |  jq -r '.[] | .ping_destinations[] | .destination')
 echo "$(date -u) - setting curl destinations"
-curl_hosts=$(cat /opt/scripts/rnm-sensor-config.json |  jq -r '.[] | .curl_destinations[] | .destination')
+curl_hosts=$(cat /opt/rnm-sensor/rnm-sensor-config.json |  jq -r '.[] | .curl_destinations[] | .destination')
 
 #start ping loop
 while true; do
