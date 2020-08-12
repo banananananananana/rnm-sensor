@@ -35,4 +35,17 @@ sudo systemctl enable filebeat
 #update curl with json write-out option
 sudo apt remove curl
 sudo apt purge curl
+sudo apt-get update
+sudo apt-get install -y libssl-dev autoconf libtool make unzip
+cd /usr/local/src
+wget https://curl.haxx.se/download/curl-7.71.1.zip
+unzip curl-7.71.1.zip
+cd curl-7.71.1
+sudo ./buildconf
+sudo ./configure --with-ssl 
+sudo make
+sudo make install
+sudo cp /usr/local/bin/curl /usr/bin/curl
+curl -V
+
 ```
