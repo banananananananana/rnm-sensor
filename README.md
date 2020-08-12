@@ -1,7 +1,7 @@
 Short intro
 -Work in progress
 
-Installation - requires ubuntu 20.04 for raspberry pi https://ubuntu.com/download/raspberry-pi
+Installation - requires ubuntu 20.04 64bit for raspberry pi https://ubuntu.com/download/raspberry-pi
 
 ```
 #start by updating ubuntu  to the latest and greates
