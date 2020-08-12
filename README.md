@@ -45,7 +45,7 @@ install package dependencies
 sudo apt install -y libssl-dev autoconf libtool make unzip python3-pip jq
 ```
 
-install [JC](github.com/kellyjonbrazil/jc/blob/master/README.md) which is a tool for parsing cli output in json
+install [JC](https://github.com/kellyjonbrazil/jc/blob/master/README.md) which is a tool for parsing cli output in json
 ```
 sudo pip3 install jc
 ```
