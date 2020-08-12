@@ -48,4 +48,10 @@ sudo make install
 sudo cp /usr/local/bin/curl /usr/bin/curl
 curl -V
 
+#Create logging directory and set permissions
+sudo mkdir /var/log/rnm-sensor
+sudo chown ubuntu:ubuntu -R /var/log/rnm-sensor/
+
+
+
 ```
