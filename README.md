@@ -19,7 +19,7 @@ sudo mkdir /var/log/rnm-sensor
 sudo chown ubuntu:ubuntu -R /var/log/rnm-sensor/
 
 #install package dependencies
-sudo apt install -y libssl-dev autoconf libtool make unzip python3-pip
+sudo apt install -y libssl-dev autoconf libtool make unzip python3-pip jq
 
 #install JC which is a tool for parsing cli output in json
 #github.com/kellyjonbrazil/jc/blob/master/README.md
@@ -40,7 +40,11 @@ sudo make install
 sudo cp /usr/local/bin/curl /usr/bin/curl
 curl -V
 
-
+#move to /opt, git clone rnm-sensor, set the default "ubuntu" user permissions and make rnm-sensor.sh executeable
+cd /opt
+sudo git clone https://github.com/banananananananana/rnm-sensor.git
+sudo chown ubuntu:ubuntu -R rnm-sensor/
+sudo chmod +x rnm-sensor/rnm-sensor.sh
 
 #install filebeat
 #https://www.elastic.co/guide/en/beats/filebeat/current/setup-repositories.html
