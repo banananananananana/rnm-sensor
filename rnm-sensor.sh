@@ -7,10 +7,10 @@ trap "kill 0" EXIT
 #check for local or remote config file
 while true; do
   echo "$(date -u) - checking for config file changes"
-    if [ $(jq -r '.[] | .config_file_source[] | .use_remote_config' rnm-sensor-config.json) == true ]
+    if [ $(jq -r '.[] | .config_file_source[] | .use_remote_config' /opt/rnm-sensor/rnm-sensor-config.json) == true ]
       then
       echo "$(date -u) - remote config file option is set, downloading file..."
-      curl -m 5 -s -o /opt/rnm-sensor/rnm-sensor-config.json $(jq -r '.[] | .config_file_source[] | .source' rnm-sensor-config.json)
+      curl -m 5 -s -o /opt/rnm-sensor/rnm-sensor-config.json $(jq -r '.[] | .config_file_source[] | .source' /opt/rnm-sensor/rnm-sensor-config.json)
       fi
   sleep 10
 done &
