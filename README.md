@@ -5,7 +5,7 @@ To some extent, this may be fine. But in a scenario where you virtualization pla
 
 This project aims to provide an inexpensive method for doing real time network performance analytics - **as seen from the user**.
 
-It utilizes the raspberry pi as a "sensor" that you can deploy to any part of your network, where it will collect ping and/or curl metrics from defined in the config. 
+It utilizes the raspberry pi as a "sensor" that you can deploy to any part of your network, where it will collect ping and/or curl metrics towards hosts defined in the config. 
 
 The config file can be hot-loaded from a URL into your fleet of sensors by setting the config variable `use_remote_config":"true"`. 
 This means you will be able to do on the fly troubleshooting, to any given host, in just a couple of minutes - using real time data provided by your sensor network.
