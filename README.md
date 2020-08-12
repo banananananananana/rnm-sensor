@@ -26,12 +26,6 @@ sudo apt update && apt dist-upgrade
 sudo reboot
 ```
 
-Create logging directory and set permissions
-```
-sudo mkdir /var/log/rnm-sensor
-sudo chown ubuntu:ubuntu -R /var/log/rnm-sensor/
-```
-
 Edit your `sudo vi /etc/fstab` file, and add the lines below to the file. 
 It will ensure the logging directories are stored in memory - minimizing the writes to your SD card.
 ```
@@ -99,14 +93,16 @@ Description=RNM sensor
 After=network.service
 
 [Service]
+ExecStartPre=+/usr/bin/mkdir -p /var/log/rnm-sensor
+ExecStartPre=+/usr/bin/chown ubuntu:ubuntu -R /var/log/rnm-sensor/
 Type=simple
 Restart=always
 RestartSec=1
 User=ubuntu
-ExecStart=/opt/rnm-sensor/rnm-service.sh
+ExecStart=/opt/rnm-sensor/rnm-sensor.sh
 
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target
 ```
 
 Enable the service by typing
