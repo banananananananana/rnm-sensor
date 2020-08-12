@@ -3,7 +3,7 @@ Determining the health of your network is often based on a central [NMS](https:/
 
 To some extent, this may be fine. But in a scenario where you virtualization platform is experiencing problems, the metrics on your [NMS](https://github.com/librenms/librenms/blob/master/README.md) may be affected. Or say you have a switch or router that is silently discarding packets, yet it reports no problems to you NMS. Tracking down the problem will be difficult if these data are all you have to go by. 
 
-This project aims to provide an inexpensive method for doing real time performance analytics of a given network - **as seen from the user**.
+This project aims to provide an inexpensive method for doing real time network performance analytics - **as seen from the user**.
 
 It utilizes the raspberry pi as a "sensor" that you can deploy to any part of your network, where it will collect ping and/or curl metrics from defined in the config. 
 
