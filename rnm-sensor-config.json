@@ -1,12 +1,16 @@
 {
     "config": {
-        "ping": [
+        "confif_file_source": [
+          {"use_remote_config":"false", source":"https://example.com/rnm-sensor.conf"},
+          {"use_local_config":"true", source":"/opt/rnm-sensor/rnm-sensor.conf"}
+        ]
+        "ping_destinations": [
           {"destination":"1.1.1.1", "description":"cloudflare"},
           {"destination":"8.8.8.8", "description":"google"},
           {"destination":"8.8.4.4", "description":"google"},
           {"destination":"9.9.9.9", "description":"quad9"}
         ],
-        "curl": [
+        "curl_destinations": [
           {"destination":"www.eb.dk", "description":"ekstrabladet"},
           {"destination":"www.dr.dk", "description":"dr"},
           {"destination":"www.tv2.dk", "description":"tv2"},
