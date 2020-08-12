@@ -73,15 +73,6 @@ sudo chown ubuntu:ubuntu -R rnm-sensor/
 sudo chmod +x rnm-sensor/rnm-sensor.sh
 ```
 
-install [filebeat](https://www.elastic.co/guide/en/beats/filebeat/current/setup-repositories.html) for log shipping to your ELK stack 
-```
-wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-sudo apt-get install apt-transport-https
-echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
-sudo apt-get update && sudo apt-get install filebeat
-sudo systemctl enable filebeat
-```
-
 ### Configuration
 
 Install and enable rnm-sensor as a systemd service
@@ -112,3 +103,32 @@ sudo systemctl start rnm-sensor.service
 ```
 
 The service will now collect performance data, and log to the files `curl_output-rnm-sensor.log and` `ping_output-rnm-sensor.log` in the directory `/var/log/rnm-sensor`
+
+### Shipping logs to ELK
+
+In order to visualize the logs we are now gathering, we need to install [filebeat](https://www.elastic.co/guide/en/beats/filebeat/current/setup-repositories.html) and ship the logs to your ELK
+
+```
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+sudo apt-get install apt-transport-https
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+sudo apt-get update && sudo apt-get install filebeat
+sudo systemctl enable filebeat
+```
+
+Edit the `sudo vi /etc/filebeat/filebeat.yml` config file and change/insert the following data
+```
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /opt/pi-logs/*.log
+  json:
+  json.keys_under_root: true
+
+output.logstash:
+  hosts: ["your-logstash-host-here:5044"]
+```
+Then start the service `sudo systemctl start filebeat`
+
+```
