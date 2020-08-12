@@ -105,7 +105,10 @@ ExecStart=/opt/rnm-sensor/rnm-sensor.sh
 WantedBy=multi-user.target
 ```
 
-Enable the service by typing
+Enable and start the service by typing
 ```
 sudo systemctl enable rnm-sensor
+sudo systemctl start rnm-sensor.service
 ```
+
+The service will now collect performance data, and log to the files `curl_output-rnm-sensor.log and` `ping_output-rnm-sensor.log` in the directory `/var/log/rnm-sensor`
