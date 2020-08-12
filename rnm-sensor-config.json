@@ -1,8 +1,8 @@
 {
     "config": {
-        "confif_file_source": [
-          {"use_remote_config":"false", source":"https://example.com/rnm-sensor.conf"},
-          {"use_local_config":"true", source":"/opt/rnm-sensor/rnm-sensor.conf"}
+        "config_file_source": [
+          {"use_remote_config":"false", "source":"http://example.com/rnm-sensor.conf"},
+          {"use_local_config":"true", "source":"/opt/rnm-sensor/rnm-sensor.conf"}
         ]
         "ping_destinations": [
           {"destination":"1.1.1.1", "description":"cloudflare"},
@@ -18,4 +18,5 @@
           {"destination":"www.jp.dk", "description":"jp"}
         ]
     }
+}
 }
