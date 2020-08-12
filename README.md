@@ -110,5 +110,6 @@ WantedBy=default.target
 ```
 
 Enable the service by typing
+```
 sudo systemctl enable rnm-service
-
+```
