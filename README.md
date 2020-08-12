@@ -30,8 +30,8 @@ sudo apt remove curl
 sudo apt purge curl
 sudo apt-get update
 cd /usr/local/src
-wget https://curl.haxx.se/download/curl-7.71.1.zip
-unzip curl-7.71.1.zip
+sudo wget https://curl.haxx.se/download/curl-7.71.1.zip
+sudo unzip curl-7.71.1.zip
 cd curl-7.71.1
 sudo ./buildconf
 sudo ./configure --with-ssl 
@@ -39,6 +39,8 @@ sudo make
 sudo make install
 sudo cp /usr/local/bin/curl /usr/bin/curl
 curl -V
+
+
 
 #install filebeat
 #https://www.elastic.co/guide/en/beats/filebeat/current/setup-repositories.html
