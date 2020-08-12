@@ -4,9 +4,8 @@ Short intro
 Installation - requires ubuntu 20.04 64bit for raspberry pi https://ubuntu.com/download/raspberry-pi
 
 ```
-#start by updating ubuntu  to the latest and greates
-sudo apt-get update
-sudo apt-get upgrade
+#start by updating ubuntu  to the latest and greatest
+sudo apt update && apt dist-upgrade
 sudo reboot
 
 #add the following lines in order to use RAM as local logging - this will minimize SD card IO
