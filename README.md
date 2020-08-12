@@ -14,28 +14,20 @@ tmpfs           /tmp            tmpfs   nosuid,nodev         0       0
 tmpfs           /var/log        tmpfs   nosuid,nodev         0       0
 tmpfs           /var/tmp        tmpfs   nosuid,nodev         0       0
 
-#install dependencies
+#Create logging directory and set permissions
+sudo mkdir /var/log/rnm-sensor
+sudo chown ubuntu:ubuntu -R /var/log/rnm-sensor/
 
-#install python 3 pip
-sudo apt install python3-pip
+#install package dependencies
+sudo apt install -y libssl-dev autoconf libtool make unzip python3-pip
 
-#install jc
+#install [JC](https://github.com/kellyjonbrazil/jc/blob/master/README.md) which is a tool for parsing cli output in json
 sudo pip3 install jc
 
-#install filebeat
-#https://www.elastic.co/guide/en/beats/filebeat/current/setup-repositories.html
-
-wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-sudo apt-get install apt-transport-https
-echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
-sudo apt-get update && sudo apt-get install filebeat
-sudo systemctl enable filebeat
-
-#update curl with json write-out option
+#remove pre-packaged curl, and install newest version that has a json write-out option
 sudo apt remove curl
 sudo apt purge curl
 sudo apt-get update
-sudo apt-get install -y libssl-dev autoconf libtool make unzip
 cd /usr/local/src
 wget https://curl.haxx.se/download/curl-7.71.1.zip
 unzip curl-7.71.1.zip
@@ -47,10 +39,14 @@ sudo make install
 sudo cp /usr/local/bin/curl /usr/bin/curl
 curl -V
 
-#Create logging directory and set permissions
-sudo mkdir /var/log/rnm-sensor
-sudo chown ubuntu:ubuntu -R /var/log/rnm-sensor/
+#install filebeat
+#https://www.elastic.co/guide/en/beats/filebeat/current/setup-repositories.html
 
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+sudo apt-get install apt-transport-https
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+sudo apt-get update && sudo apt-get install filebeat
+sudo systemctl enable filebeat
 
 
 ```
