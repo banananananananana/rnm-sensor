@@ -87,3 +87,28 @@ echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee 
 sudo apt-get update && sudo apt-get install filebeat
 sudo systemctl enable filebeat
 ```
+
+### Configuration
+
+Install and enable rnm-sensor as a systemd service
+
+Add the service file to systemd `sudo vi /etc/systemd/system/rnm-sensor.service` and paste the command below into the file.
+```
+[Unit]
+Description=RNM sensor
+After=network.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=ubuntu
+ExecStart=/opt/rnm-sensor/rnm-service.sh
+
+[Install]
+WantedBy=default.target
+```
+
+Enable the service by typing
+sudo systemctl enable rnm-service
+
