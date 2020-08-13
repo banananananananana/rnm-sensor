@@ -1,0 +1,15 @@
+[Unit]
+Description=RNM sensor
+After=network.service
+
+[Service]
+ExecStartPre=+/usr/bin/mkdir -p /var/log/rnm-sensor
+ExecStartPre=+/usr/bin/chown ubuntu:ubuntu -R /var/log/rnm-sensor/
+Type=simple
+Restart=always
+RestartSec=1
+User=ubuntu
+ExecStart=/opt/rnm-sensor/rnm-sensor.sh
+
+[Install]
+WantedBy=multi-user.target
