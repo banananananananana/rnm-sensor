@@ -23,7 +23,6 @@ pip3 install jc
 
 # Upgrade curl to a version that supports "json" write-out
 apt purge curl -y
-apt update
 cd /usr/local/src || exit 2
 
 wget https://curl.haxx.se/download/curl-7.71.1.zip
