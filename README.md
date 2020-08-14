@@ -14,7 +14,8 @@ You will get detailed metrics in the form of
 * ICMP packet loss including exact timestamp of when and where it happened 
 * ICMP RTT metrics including timestamps
 * CURL metrics with http status code, time taken, dns lookup time and much more
-* All logging is done in JSON - which means logstash will import the data without any GROK filtering
+
+All logging is done in JSON - which means logstash will import the data without any GROK filtering
 
 ![How it works](https://i.imgur.com/I7XbAcd.png)
 
