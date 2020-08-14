@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #check if script is run as root
 if [ $(id -u) != 0 ] ; then
     echo "Please run as root"
