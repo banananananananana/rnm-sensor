@@ -12,3 +12,4 @@ Features and fixes to be implemented:
 * Inclusion of `iperf` metrics
 * Inclusion of `flowgrind` metrics
 * Rewrite Logstash rules, to keep it all in Filebeat (by default)
+* Provide a Elasticsearch template
