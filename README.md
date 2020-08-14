@@ -24,3 +24,10 @@ sudo git clone https://github.com/banananananananana/rnm-sensor.git
 cd rnm-sensor
 sudo ./install.sh
 ```
+
+The install script does the following
+* Installs required packages in order to run rnm-sensor (libssl-dev autoconf libtool make unzip python3-pip jq net-tools jc)
+* Updates curl to the latest version (which supports json write-out logging)
+* Creates tmpfs for /tmp/ /var/log/ /var/tmp/ in order to minimize SD wear
+* Adds a systemd service called rnm-sensor
+* Sets the MAC address of the PI as hostname. This makes it possible to clone the SD card for mass deployments, while being able to track each PI within the network
