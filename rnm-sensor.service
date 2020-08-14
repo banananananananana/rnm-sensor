@@ -3,7 +3,7 @@ Description=RNM sensor
 After=network.service
 
 [Service]
-ExecStartPre=+/bin/bash /opt/rnm-sensor/set_mac_as_hostname.sh
+ExecStartPre=+/bin/bash /opt/rnm-sensor/set-mac-as-hostname.sh
 ExecStartPre=+/usr/bin/mkdir -p /var/log/rnm-sensor
 ExecStartPre=+/usr/bin/chown ubuntu:ubuntu -R /var/log/rnm-sensor/
 Type=simple
