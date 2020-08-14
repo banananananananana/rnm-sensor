@@ -32,6 +32,14 @@ make
 make install
 cp /usr/local/bin/curl /usr/bin/curl
 
+#install filebeat and copy template config
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+apt-get install apt-transport-https
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+apt-get update && sudo apt-get install filebeat
+cp /opt/rnm-sensor/filebeat/filebeat-template.yml filebeat-template.yml /etc/filebeat/filebeat.yml
+systemctl enable filebeat
+
 #set permissions
 chown ubuntu:ubuntu -R /opt/rnm-sensor/
 chmod +x /opt/rnm-sensor/rnm-sensor.sh
