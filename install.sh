@@ -14,7 +14,7 @@ echo "tmpfs           /var/log        tmpfs   nosuid,nodev         0       0">>/
 echo "tmpfs           /var/tmp        tmpfs   nosuid,nodev         0       0">>/etc/fstab
 
 #install package dependencies
-sudo apt install -y libssl-dev autoconf libtool make unzip python3-pip jq
+sudo apt install -y libssl-dev autoconf libtool make unzip python3-pip jq net-tools
 sudo pip3 install jc
 
 #upgrade curl to json out version
