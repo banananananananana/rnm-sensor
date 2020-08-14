@@ -10,10 +10,10 @@ It utilizes the raspberry pi as a "sensor" that you can deploy to any part of yo
 The config file can be hot-loaded from a URL into your fleet of sensors by setting the config variable `"use_remote_config":"true"`.
 This means you will be able to do on the fly troubleshooting, to any given host, in just a couple of minutes - using real time data provided by your sensor network.
 
-You will get detailed metrics in the form of
+You will get detailed metrics in the form of:
 * ICMP packet loss including exact timestamp of when and where it happened
 * ICMP RTT metrics including timestamps
-* CURL metrics with http status code, time taken, dns lookup time and much more
+* cURL metrics with http status code, time taken, dns lookup time and much more
 
 All logging is done in JSON - which means logstash will import the data without any GROK filtering
 
