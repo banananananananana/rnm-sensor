@@ -29,6 +29,6 @@ sudo ./install.sh
 The install script does the following
 * Installs required packages in order to run rnm-sensor (libssl-dev autoconf libtool make unzip python3-pip jq net-tools jc)
 * Updates curl to the latest version (which supports json write-out logging)
-* Creates tmpfs for /tmp/ /var/log/ /var/tmp/ in order to minimize SD wear
+* Creates tmpfs for /tmp/ /var/log/ /var/tmp/ in order to minimize SD card wear
 * Adds a systemd service called rnm-sensor
-* Sets the MAC address of the PI as hostname. This makes it possible to clone the SD card for mass deployments, while being able to easily identify each PI within the network
+* Sets the MAC address of the PI as hostname. This enables a single SD card to be clone for mass deployments, while being able to easily identify each PI within the network
