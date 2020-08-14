@@ -32,7 +32,7 @@ curl_hosts=$(jq -r '.[] | .curl_destinations[] | .destination' <$CONFIG_FILE)
 # Start ping loop
 while true; do
   for host in $ping_hosts; do
-    ping -D -O -c 1 "$host" | jc --ping >>$LOG_FILE &
+    ping -DOc 1 "$host" | jc --ping >>$LOG_FILE &
   done
 
   sleep 10
