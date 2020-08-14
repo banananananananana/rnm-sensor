@@ -49,6 +49,7 @@ mv /opt/rnm-sensor/rnm-sensor.service /etc/systemd/system/rnm-sensor.service
 
 #enable service
 systemctl enable rnm-sensor
+systemctl start rnm-sensor
 
 #echo ending
 echo ""
