@@ -30,4 +30,4 @@ The install script does the following
 * Updates curl to the latest version (which supports json write-out logging)
 * Creates tmpfs for /tmp/ /var/log/ /var/tmp/ in order to minimize SD wear
 * Adds a systemd service called rnm-sensor
-* Sets the MAC address of the PI as hostname. This makes it possible to clone the SD card for mass deployments, while being able to track each PI within the network
+* Sets the MAC address of the PI as hostname. This makes it possible to clone the SD card for mass deployments, while being able to easily identify each PI within the network
