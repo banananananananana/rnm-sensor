@@ -18,7 +18,7 @@ apt dist-upgrade -y
 } >>/etc/fstab
 
 # Install package dependencies
-apt install -y libssl-dev autoconf libtool make unzip python3-pip jq net-tools apt-transport-https ntp
+apt install -y libssl-dev autoconf libtool make unzip python3-pip jq net-tools apt-transport-https
 pip3 install jc
 
 # Upgrade curl to a version that supports "json" write-out
