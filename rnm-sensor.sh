@@ -5,7 +5,8 @@ trap "exit" INT TERM ERR
 trap "kill 0" EXIT
 
 CONFIG_FILE="/opt/rnm-sensor/rnm-sensor-config.json"
-LOG_FILE="/var/log/rnm-sensor/ping_output-rnm-sensor.log"
+PING_LOG_FILE="/var/log/rnm-sensor/ping_output-rnm-sensor.log"
+CURL_LOG_FILE="/var/log/rnm-sensor/ping_output-rnm-sensor.log"
 
 # Check for local or remote config file
 while true; do
@@ -32,7 +33,7 @@ curl_hosts=$(jq -r '.[] | .curl_destinations[] | .destination' <$CONFIG_FILE)
 # Start ping loop
 while true; do
   for host in $ping_hosts; do
-    ping -DOc 1 "$host" | jc --ping >>$LOG_FILE &
+    ping -DOc 1 "$host" | jc --ping >>PING_$LOG_FILE &
   done
 
   sleep 10
@@ -42,7 +43,7 @@ done &
 # Start curl loop
 while true; do
   for host in $curl_hosts; do
-    curl -Isw '%{json}' "$host" -o /dev/null | jq --arg now "$(date +%s%3N)" '. += { "curl_timestamp": $now }' | jq -c . >>$LOG_FILE
+    curl -Isw '%{json}' "$host" -o /dev/null | jq --arg now "$(date +%s%3N)" '. += { "curl_timestamp": $now }' | jq -c . >>$CURL_LOG_FILE
   done
 
   sleep 10
