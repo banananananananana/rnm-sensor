@@ -17,8 +17,11 @@ You will get detailed metrics in the form of:
 
 All logging is done in JSON - which means logstash will import the data without any GROK filtering
 
+A concept drawing of how it works
 ![How it works](https://i.imgur.com/I7XbAcd.png)
 
+An ELK dashboard with actual data from a production setup
+![How it works](https://i.imgur.com/mgof7Hm.png)
 
 ### Prerequisites
 * Raspberry Pi 3 or 4
