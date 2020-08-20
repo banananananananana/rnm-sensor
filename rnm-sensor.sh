@@ -33,6 +33,9 @@ ping_hosts=$(jq -r '.[] | .ping_destinations[] | .destination' <$CONFIG_FILE)
 echo "$(date -u) - setting curl destinations"
 curl_hosts=$(jq -r '.[] | .curl_destinations[] | .destination' <$CONFIG_FILE)
 
+echo "$(date -u) - setting traceroute destinations"
+traceroute_hosts=$(jq -r '.[] | .traceroute_destinations[] | .destination' <$CONFIG_FILE)
+
 # Start ping loop
 while true; do
   for host in $ping_hosts; do
