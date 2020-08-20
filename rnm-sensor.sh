@@ -7,7 +7,7 @@ trap "kill 0" EXIT
 CONFIG_FILE="/opt/rnm-sensor/rnm-sensor-config.json"
 PING_LOG_FILE="/var/log/rnm-sensor/ping_output-rnm-sensor.log"
 CURL_LOG_FILE="/var/log/rnm-sensor/curl_output-rnm-sensor.log"
-TRACEROUTE_LOG_FILE_LOG_FILE="/var/log/rnm-sensor/traceroute_output-rnm-sensor.log"
+TRACEROUTE_LOG_FILE="/var/log/rnm-sensor/traceroute_output-rnm-sensor.log"
 PROCESS_COUNT_LOG_FILE="/var/log/rnm-sensor/process_count_output-rnm-sensor.log"
 
 
