@@ -29,6 +29,19 @@
         "destination": "https://www.quad9.net/",
         "description": "quad9"
       }
+    ],
+	    "traceroute_hosts_destinations": [{
+        "destination": "1.1.1.1",
+        "description": "cloudflare"
+      },
+      {
+        "destination": "8.8.8.8",
+        "description": "google"
+      },
+      {
+        "destination": "9.9.9.9",
+        "description": "quad9"
+      }
     ]
   }
 }
