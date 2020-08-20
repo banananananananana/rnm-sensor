@@ -30,7 +30,7 @@
         "description": "quad9"
       }
     ],
-	    "traceroute_hosts_destinations": [{
+    "traceroute_destinations": [{
         "destination": "1.1.1.1",
         "description": "cloudflare"
       },
