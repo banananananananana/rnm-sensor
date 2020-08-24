@@ -19,7 +19,7 @@ apt dist-upgrade -y
 
 # Install package dependencies
 apt install -y libssl-dev autoconf libtool make unzip python3-pip jq net-tools apt-transport-https traceroute
-pip3 install jc
+pip3 install jc multiprocessing-logging requests
 
 # Upgrade curl to a version that supports "json" write-out
 apt purge curl -y
