@@ -5,7 +5,6 @@
 Pythonification of rnm-sensor.sh
 """
 
-__author__ = "You made this?  I made this!"
 
 import json
 import logging
