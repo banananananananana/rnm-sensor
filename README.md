@@ -13,6 +13,7 @@ This means you will be able to do on the fly troubleshooting, to any given host,
 You will get detailed metrics in the form of:
 * ICMP packet loss including exact timestamp of when and where it happened
 * ICMP RTT metrics including timestamps
+* Traceroute to targets defined in the config every 5 minutes - always nifty when troubleshooting 
 * cURL metrics with http status code, time taken, dns lookup time and much more
 
 All logging is done in JSON - which means logstash will import the data without any GROK filtering
