@@ -44,5 +44,6 @@ The install script does the following
 * Updates curl to the latest version (which supports json write-out logging)
 * Creates tmpfs for `/tmp`, `/var/log`, and `/var/tmp` in order to minimize SD card wear and tear
 * Adds a systemd service called `rnm-sensor.service`
-* Installs the filebeat log shipper and copies [filebeat-template.yml](https://github.com/banananananananana/rnm-sensor/blob/master/filebeat/filebeat-template.yml) - :warning: remember to set your logstash host in /etc/filebeat/filebeat.yml :warning:
+* Installs the filebeat log shipper and copies [filebeat-template.yml](https://github.com/banananananananana/rnm-sensor/blob/master/filebeat/filebeat-template.yml)
+:warning: remember to set your logstash host in /etc/filebeat/filebeat.yml :warning:
 * Sets the MAC address of the RPi as the hostname. This enables a single SD card to be cloned for mass deployments, while being able to easily identify each RPi within the network
