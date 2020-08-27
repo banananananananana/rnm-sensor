@@ -84,6 +84,10 @@ filebeat.config.modules:
 
 
 # ================================== General ===================================
+#If enabled, Filebeat periodically logs its internal metrics that have changed in the last period. 
+#For each metric that changed, the delta from the value at the beginning of the period is logged. 
+#Also, the total values for all non-zero internal metrics are logged on shutdown. The default is true.
+logging.metrics.enabled: false
 
 # The name of the shipper that publishes the network data. It can be used to group
 # all the transactions sent by a single shipper in the web interface.
