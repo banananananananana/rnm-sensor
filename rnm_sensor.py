@@ -77,7 +77,7 @@ def check_remote_config():
                                     "New local config has been written to disk.")
                         except IOError as error:
                             SENSOR_LOG.error("ERROR: Cannot write to configfile '%s', %s",
-                                CONFIG_FILENAME, error))
+                                CONFIG_FILENAME, error)
 
                 else:
                     print("Loading remote config failed with status code:",
