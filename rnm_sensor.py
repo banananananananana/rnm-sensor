@@ -117,7 +117,7 @@ def curl(dest):
     try:
         output = subprocess.run(
             [
-                "/home/tk/code/rnm_sensor/curl-7.71.1/src/curl",
+                "/usr/bin/curl",
                 "-I",
                 "-w '%{json}'",
                 dest['url']
