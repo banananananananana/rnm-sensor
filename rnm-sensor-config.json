@@ -6,7 +6,7 @@
         }
     ],
     "logging": {
-        "path": "/home/tk/code/rnm_sensor/logs/",
+        "path": "/var/log/rnm-sensor/",
         "probes": {
             "curl": "curl.log",
             "dig": "dig.log",
