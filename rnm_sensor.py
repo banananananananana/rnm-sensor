@@ -102,7 +102,7 @@ def dig(dest):
             check=True,
             timeout=PROBE_TIMEOUT
         )
-        DIG_LOG.info(jc.parsers.dig.parse(output.stdout.decode())[0])
+        DIG_LOG.info(json.dumps(jc.parsers.dig.parse(output.stdout.decode())[0]))
     except subprocess.CalledProcessError as error:
         SENSOR_LOG.info("ERROR: %s", error)
     except subprocess.TimeoutExpired as error:
@@ -150,7 +150,7 @@ def ping(dest):
             check=True,
             timeout=PROBE_TIMEOUT
         )
-        PING_LOG.info(jc.parsers.ping.linux_parse(output.stdout.decode()))
+        PING_LOG.info(json.dumps(jc.parsers.ping.linux_parse(output.stdout.decode())))
     except subprocess.CalledProcessError as error:
         SENSOR_LOG.info("ERROR: %s", error)
     except subprocess.TimeoutExpired as error:
@@ -170,7 +170,7 @@ def tracepath(dest):
             check=True,
             timeout=PROBE_TIMEOUT
         )
-        TRACEPATH_LOG.info(jc.parsers.tracepath.parse(output.stdout.decode()))
+        TRACEPATH_LOG.info(json.dumps(jc.parsers.tracepath.parse(output.stdout.decode())))
         print(output)
     except subprocess.CalledProcessError as error:
         SENSOR_LOG.info("ERROR: %s", error)
@@ -191,8 +191,8 @@ def traceroute(dest):
             check=True,
             timeout=PROBE_TIMEOUT
         )
-        TRACEROUTE_LOG.info(
-            jc.parsers.traceroute.parse(output.stdout.decode()))
+        TRACEROUTE_LOG.info(json.dumps(
+            jc.parsers.traceroute.parse(output.stdout.decode())))
     except subprocess.CalledProcessError as error:
         SENSOR_LOG.info("ERROR: %s", error)
     except subprocess.TimeoutExpired as error:
