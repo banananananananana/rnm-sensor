@@ -14,8 +14,8 @@ import signal
 import subprocess
 import time
 
-import multiprocessing_logging
 import requests
+import multiprocessing_logging
 
 import jc.parsers.dig
 import jc.parsers.ping
@@ -77,7 +77,7 @@ def check_remote_config():
                                     "New local config has been written to disk.")
                         except IOError as error:
                             SENSOR_LOG.error("ERROR: Cannot write to configfile '%s', %s",
-                                CONFIG_FILENAME, error)
+                                             CONFIG_FILENAME, error)
 
                 else:
                     print("Loading remote config failed with status code:",
@@ -300,7 +300,6 @@ signal.signal(signal.SIGINT, signal_handler)
 
 if __name__ == '__main__':
 
-    global STARTTIME
     STARTTIME = time.time()
 
     PROBES = {
@@ -314,12 +313,12 @@ if __name__ == '__main__':
 
     load_config()
 
-    logs = init_logs()
-    SENSOR_LOG.info("initiated the following logs: '%s'", ", ".join(logs))
+    LOGS = init_logs()
+    SENSOR_LOG.info("initiated the following logs: '%s'", ", ".join(LOGS))
     multiprocessing_logging.install_mp_handler()
 
-    p = mp.Process(target=check_remote_config)
-    p.start()
+    P = mp.Process(target=check_remote_config)
+    P.start()
 
     while True:
 
