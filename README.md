@@ -39,7 +39,7 @@ sudo ./install.sh
 ```
 
 The install script does the following
-* Installs required packages in order to run rnm-sensor (`libssl-dev`, `autoconf`, `libtool`, `make`, `unzip`, `python3-pip`, `jq`, `net-tools`, and `jc`)
+* Installs required packages in order to run rnm-sensor (`libssl-dev`, `autoconf`, `libtool`, `make`, `unzip`, `python3-pip`, `net-tools`, and `jc`)
 * Updates curl to the latest version (which supports json write-out logging)
 * Creates tmpfs for `/tmp`, `/var/log`, and `/var/tmp` in order to minimize SD card wear and tear
 * Adds a systemd service called `rnm-sensor.service`
