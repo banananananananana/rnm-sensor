@@ -127,11 +127,13 @@ def curl(dest):
             check=True,
             timeout=PROBE_TIMEOUT
         )
-        CURL_LOG.info(
+        curl_result = json.loads(
             re.match(
                 "^ '(.*)'$",
                 output.stdout.decode().split('\n')[-1]
             ).groups()[0])
+        curl_result['curl_timestamp'] = time.time()
+        CURL_LOG.info(json.dumps(curl_result))
     except subprocess.CalledProcessError as error:
         SENSOR_LOG.info("ERROR: %s", error)
     except subprocess.TimeoutExpired as error:
@@ -159,7 +161,7 @@ def ping(dest):
 
 def tracepath(dest):
     """
-    Perform traceroute and print output.
+    Perform tracepath and print output.
     """
 
     try:
@@ -170,8 +172,9 @@ def tracepath(dest):
             check=True,
             timeout=PROBE_TIMEOUT
         )
-        TRACEPATH_LOG.info(json.dumps(jc.parsers.tracepath.parse(output.stdout.decode())))
-        print(output)
+        tracepath_output = jc.parsers.tracepath.parse(output.stdout.decode())
+        tracepath_output['tracepath_timestamp'] = time.time()
+        TRACEPATH_LOG.info(json.dumps(tracepath_output))
     except subprocess.CalledProcessError as error:
         SENSOR_LOG.info("ERROR: %s", error)
     except subprocess.TimeoutExpired as error:
@@ -191,8 +194,9 @@ def traceroute(dest):
             check=True,
             timeout=PROBE_TIMEOUT
         )
-        TRACEROUTE_LOG.info(json.dumps(
-            jc.parsers.traceroute.parse(output.stdout.decode())))
+        traceroute_output = jc.parsers.traceroute.parse(output.stdout.decode())
+        traceroute_output['traceroute_timestamp'] = time.time()
+        TRACEROUTE_LOG.info(json.dumps(traceroute_output))
     except subprocess.CalledProcessError as error:
         SENSOR_LOG.info("ERROR: %s", error)
     except subprocess.TimeoutExpired as error:
