@@ -315,7 +315,7 @@ if __name__ == '__main__':
     load_config()
 
     logs = init_logs()
-    SENSOR_LOG.info("initiated the following logs: '{%s}'", ", ".join(logs))
+    SENSOR_LOG.info("initiated the following logs: '%s'", ", ".join(logs))
     multiprocessing_logging.install_mp_handler()
 
     p = mp.Process(target=check_remote_config)
