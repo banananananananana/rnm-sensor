@@ -22,7 +22,10 @@
             "ip": "1.1.1.1",
             "nameserver": "dig -t A cloudflare.com @1.1.1.1",
             "probes": [
-                "all"
+                "curl",
+                "dig",
+                "ping",
+                "traceroute"
             ],
             "url": "https://www.cloudflare.com"
         },
