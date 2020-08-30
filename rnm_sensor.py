@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Pythonification of rnm-sensor.sh
+Remote Network Monitor Sensor
 """
 
 
