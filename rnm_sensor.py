@@ -25,8 +25,8 @@ import jc.parsers.traceroute
 
 BASEDIR = "/opt/rnm-sensor/"
 CONFIG_FILENAME = BASEDIR + "rnm-sensor-config.json"
-TEST_INTERVAL = 10.0
-REMOTE_CHECK_INTERVAL = 5
+TEST_INTERVAL = 60.0
+REMOTE_CHECK_INTERVAL = 300
 PROBE_TIMEOUT = 5
 
 
