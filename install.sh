@@ -18,7 +18,7 @@ apt dist-upgrade -y
 } >>/etc/fstab
 
 # Install package dependencies
-apt install -y libssl-dev autoconf libtool make unzip python3-pip jq net-tools apt-transport-https traceroute
+apt install -y libssl-dev autoconf libtool make unzip python3-pip net-tools apt-transport-https traceroute
 pip3 install jc multiprocessing-logging requests
 
 # Upgrade curl to a version that supports "json" write-out
@@ -43,7 +43,7 @@ systemctl enable filebeat
 
 # Set permissions
 chown ubuntu:ubuntu -R /opt/rnm-sensor/
-chmod +x /opt/rnm-sensor/rnm-sensor.sh
+chmod +x /opt/rnm-sensor/rnm_sensor.py
 
 # Add systemd service
 cp /opt/rnm-sensor/rnm-sensor.service /etc/systemd/system/rnm-sensor.service
