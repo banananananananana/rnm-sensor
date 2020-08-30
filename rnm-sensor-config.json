@@ -14,7 +14,7 @@
             "tracepath": "tracepath.log",
             "traceroute": "traceroute.log"
         },
-        "sensor": "rnm-sensor.log"
+        "sensor": "rnm-sensor"
     },
     "targets": [
         {
