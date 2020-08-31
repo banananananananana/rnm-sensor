@@ -102,7 +102,9 @@ def dig(dest):
             check=True,
             timeout=PROBE_TIMEOUT
         )
-        DIG_LOG.info(json.dumps(jc.parsers.dig.parse(output.stdout.decode())[0]))
+        dig_result = jc.parsers.dig.parse(output.stdout.decode())[0]
+        dig_result['dig_timestamp'] = time.time()
+        DIG_LOG.info(json.dumps(dig_result))
     except subprocess.CalledProcessError as error:
         SENSOR_LOG.info("ERROR: %s", error)
     except subprocess.TimeoutExpired as error:
@@ -152,7 +154,9 @@ def ping(dest):
             check=True,
             timeout=PROBE_TIMEOUT
         )
-        PING_LOG.info(json.dumps(jc.parsers.ping.linux_parse(output.stdout.decode())))
+        ping_result = jc.parsers.ping.linux_parse(output.stdout.decode())
+        ping_result['ping_timestamp'] = time.time()
+        PING_LOG.info(json.dumps(ping_result))
     except subprocess.CalledProcessError as error:
         SENSOR_LOG.info("ERROR: %s", error)
     except subprocess.TimeoutExpired as error:
