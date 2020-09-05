@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-Remote Network Monitor Sensor
-"""
+"""Remote Network Monitor Sensor."""
 
 
 import json
@@ -31,9 +29,7 @@ PROBE_TIMEOUT = 5
 
 
 def load_config():
-    """
-    Loads in the local config.
-    """
+    """Load in the local config."""
     global CONFIG
     try:
         with open(CONFIG_FILENAME, "r") as config_file:
@@ -49,9 +45,7 @@ def load_config():
 
 
 def check_remote_config():
-    """
-    Load remote config if required.
-    """
+    """Load remote config if required."""
     global CONFIG
     while True:
         if CONFIG['config_file_source'][0]['use_remote_config']:
@@ -90,10 +84,7 @@ def check_remote_config():
 
 
 def dig(dest):
-    """
-    Perform ns lookup and print output.
-    """
-
+    """Perform ns lookup and print output."""
     try:
         output = subprocess.run(
             ["dig", dest['nameserver']],
@@ -112,10 +103,7 @@ def dig(dest):
 
 
 def curl(dest):
-    """
-    Curl destination and print output.
-    """
-
+    """Curl destination and print output."""
     try:
         output = subprocess.run(
             [
@@ -143,9 +131,7 @@ def curl(dest):
 
 
 def ping(dest):
-    """
-    Ping host and print output.
-    """
+    """Ping host and print output."""
     try:
         output = subprocess.run(
             ["ping", "-DO", "-c1", "-W3", dest['ip']],
@@ -164,10 +150,7 @@ def ping(dest):
 
 
 def tracepath(dest):
-    """
-    Perform tracepath and print output.
-    """
-
+    """Perform tracepath and print output."""
     try:
         output = subprocess.run(
             ["tracepath", dest['ip']],
@@ -186,10 +169,7 @@ def tracepath(dest):
 
 
 def traceroute(dest):
-    """
-    Perform traceroute and print output.
-    """
-
+    """Perform traceroute and print output."""
     try:
         output = subprocess.run(
             ["traceroute", "-w1", "--mtu", dest['ip']],
@@ -208,18 +188,13 @@ def traceroute(dest):
 
 
 def signal_handler(sig, frame):
-    """
-    Exit gracefully.
-    """
+    """Exit gracefully."""
     print("Signal handler called with signal", sig)
     exit(0)
 
 
 def init_logs():
-    """
-    Initialize the required logfiles.
-    """
-
+    """Initialize the required logfiles."""
     log_path = CONFIG['logging']['path']
     logs_started = []
 
