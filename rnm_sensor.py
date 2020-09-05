@@ -11,6 +11,7 @@ import re
 import signal
 import subprocess
 import time
+from typing import Dict, List
 
 import requests
 import multiprocessing_logging
@@ -83,11 +84,11 @@ def check_remote_config():
                    ((time.time() - STARTTIME) % REMOTE_CHECK_INTERVAL))
 
 
-def dig(dest):
+def dig(dest: str) -> None:
     """Perform ns lookup and print output."""
     try:
         output = subprocess.run(
-            ["dig", dest['nameserver']],
+            ["dig", dest],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             check=True,
@@ -102,7 +103,7 @@ def dig(dest):
         SENSOR_LOG.info("ERROR: %s", error)
 
 
-def curl(dest):
+def curl(dest: str) -> None:
     """Curl destination and print output."""
     try:
         output = subprocess.run(
@@ -110,7 +111,7 @@ def curl(dest):
                 "/usr/bin/curl",
                 "-I",
                 "-w '%{json}'",
-                dest['url']
+                dest
             ],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
@@ -119,7 +120,7 @@ def curl(dest):
         )
         curl_result = json.loads(
             re.match(
-                "^ '(.*)'$",
+                r"^ '(.*)'$",
                 output.stdout.decode().split('\n')[-1]
             ).groups()[0])
         curl_result['curl_timestamp'] = time.time()
@@ -130,11 +131,11 @@ def curl(dest):
         SENSOR_LOG.info("ERROR: %s", error)
 
 
-def ping(dest):
+def ping(dest: str) -> None:
     """Ping host and print output."""
     try:
         output = subprocess.run(
-            ["ping", "-DO", "-c1", "-W3", dest['ip']],
+            ["ping", "-DO", "-c1", "-W3", dest],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             check=True,
@@ -149,11 +150,11 @@ def ping(dest):
         SENSOR_LOG.info("ERROR: %s", error)
 
 
-def tracepath(dest):
+def tracepath(dest: str) -> None:
     """Perform tracepath and print output."""
     try:
         output = subprocess.run(
-            ["tracepath", dest['ip']],
+            ["tracepath", dest],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             check=True,
@@ -168,11 +169,11 @@ def tracepath(dest):
         SENSOR_LOG.info("ERROR: %s", error)
 
 
-def traceroute(dest):
+def traceroute(dest: str):
     """Perform traceroute and print output."""
     try:
         output = subprocess.run(
-            ["traceroute", "-w1", "--mtu", dest['ip']],
+            ["traceroute", "-w1", "--mtu", dest],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             check=True,
@@ -193,7 +194,7 @@ def signal_handler(sig, frame):
     exit(0)
 
 
-def init_logs():
+def init_logs() -> List[str]:
     """Initialize the required logfiles."""
     log_path = CONFIG['logging']['path']
     logs_started = []
@@ -202,7 +203,7 @@ def init_logs():
         filename = log_path + CONFIG['logging']['sensor']
         sensor_log_formatter = "%(asctime)s [%(levelname)s]: %(message)s in %(pathname)s:%(lineno)d"
         global SENSOR_LOG
-        SENSOR_LOG = logging.getLogger('sensor')
+        #SENSOR_LOG = logging.getLogger('sensor')
         SENSOR_LOG.setLevel(logging.INFO)
         sensor_log_filehandler = logging.FileHandler(filename)
         sensor_log_filehandler.setLevel(logging.INFO)
@@ -269,13 +270,13 @@ def init_logs():
     return logs_started
 
 
-CONFIG = None
-SENSOR_LOG = None
-CURL_LOG = None
-DIG_LOG = None
-PING_LOG = None
-TRACEPATH_LOG = None
-TRACEROUTE_LOG = None
+CONFIG: Dict = {}
+SENSOR_LOG = logging.getLogger('sensor')
+CURL_LOG = logging.getLogger('curl')
+DIG_LOG = logging.getLogger('dig')
+PING_LOG = logging.getLogger('ping')
+TRACEPATH_LOG = logging.getLogger('tracepath')
+TRACEROUTE_LOG = logging.getLogger('traceroute')
 
 
 signal.signal(signal.SIGINT, signal_handler)
@@ -285,7 +286,7 @@ if __name__ == '__main__':
 
     STARTTIME = time.time()
 
-    PROBES = {
+    PROBES: Dict = {
         'all': [],
         'curl': [],
         'dig': [],
@@ -306,19 +307,19 @@ if __name__ == '__main__':
     while True:
 
         for dig_dest in [*PROBES['dig'], *PROBES['all']]:
-            p = mp.Process(target=dig, args=(dig_dest,))
+            p = mp.Process(target=dig, args=(dig_dest['nameserver'],))
             p.start()
         for curl_dest in [*PROBES['curl'], *PROBES['all']]:
-            p = mp.Process(target=curl, args=(curl_dest,))
+            p = mp.Process(target=curl, args=(curl_dest['url'],))
             p.start()
         for ping_dest in [*PROBES['ping'], *PROBES['all']]:
-            p = mp.Process(target=ping, args=(ping_dest,))
+            p = mp.Process(target=ping, args=(ping_dest['ip'],))
             p.start()
         for tracepath_dest in [*PROBES['tracepath'], *PROBES['all']]:
-            p = mp.Process(target=tracepath, args=(tracepath_dest,))
+            p = mp.Process(target=tracepath, args=(tracepath_dest['ip'],))
             p.start()
         for traceroute_dest in [*PROBES['traceroute'], *PROBES['all']]:
-            p = mp.Process(target=traceroute, args=(traceroute_dest,))
+            p = mp.Process(target=traceroute, args=(traceroute_dest['ip'],))
             p.start()
 
         time.sleep(TEST_INTERVAL - ((time.time() - STARTTIME) % TEST_INTERVAL))
