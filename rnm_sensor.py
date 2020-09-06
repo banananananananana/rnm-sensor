@@ -275,7 +275,7 @@ def init_logs() -> List[str]:
     return logs_started
 
 
-CONFIG: Dict = {}
+CONFIG = {}
 SENSOR_LOG = logging.getLogger("sensor")
 CURL_LOG = logging.getLogger("curl")
 DIG_LOG = logging.getLogger("dig")
@@ -291,7 +291,7 @@ if __name__ == "__main__":
 
     STARTTIME = time.time()
 
-    PROBES: Dict = {
+    PROBES = {
         "all": [],
         "curl": [],
         "dig": [],
