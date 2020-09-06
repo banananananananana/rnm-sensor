@@ -99,7 +99,7 @@ def dig(dest: str) -> None:
     """Perform ns lookup and print output."""
     try:
         output = subprocess.run(
-            ["dig", dest],
+            ["/usr/bin/dig", dest],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             check=True,
@@ -139,7 +139,7 @@ def ping(dest: str) -> None:
     """Ping host and print output."""
     try:
         output = subprocess.run(
-            ["ping", "-DO", "-c1", "-W3", dest],
+            ["/usr/bin/ping", "-DO", "-c1", "-W3", dest],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             check=True,
@@ -158,7 +158,7 @@ def tracepath(dest: str) -> None:
     """Perform tracepath and print output."""
     try:
         output = subprocess.run(
-            ["tracepath", dest],
+            ["/usr/bin/tracepath", dest],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             check=True,
@@ -177,7 +177,7 @@ def traceroute(dest: str):
     """Perform traceroute and print output."""
     try:
         output = subprocess.run(
-            ["traceroute", "-w1", "--mtu", dest],
+            ["/usr/sbin/traceroute", "-w1", "--mtu", dest],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             check=True,
