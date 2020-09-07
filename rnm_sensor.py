@@ -11,7 +11,7 @@ import re
 import signal
 import subprocess
 import time
-from typing import Dict, List
+from typing import List
 
 import requests
 import multiprocessing_logging
@@ -173,7 +173,7 @@ def tracepath(dest: str) -> None:
         SENSOR_LOG.info("ERROR: %s", error)
 
 
-def traceroute(dest: str):
+def traceroute(dest: str) -> None:
     """Perform traceroute and print output."""
     try:
         output = subprocess.run(
