@@ -25,10 +25,10 @@ pip3 install jc multiprocessing-logging requests
 apt purge curl -y
 cd /usr/local/src || exit 2
 
-wget https://curl.haxx.se/download/curl-7.71.1.zip
-unzip curl-7.71.1.zip
+wget https://curl.haxx.se/download/curl-7.72.0.zip
+unzip curl-7.72.0.zip
 
-cd curl-7.71.1 || exit 2
+cd curl-7.72.0 || exit 2
 
 ./buildconf && ./configure --with-ssl
 make && make install
