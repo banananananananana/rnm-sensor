@@ -18,7 +18,6 @@ import multiprocessing_logging
 
 import jc.parsers.dig
 import jc.parsers.ping
-import jc.parsers.tracepath
 import jc.parsers.traceroute
 
 
@@ -154,25 +153,6 @@ def ping(dest: str) -> None:
         SENSOR_LOG.info("ERROR: %s", error)
 
 
-def tracepath(dest: str) -> None:
-    """Perform tracepath and print output."""
-    try:
-        output = subprocess.run(
-            ["/usr/bin/tracepath", dest],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            check=True,
-            timeout=PROBE_TIMEOUT,
-        )
-        tracepath_output = jc.parsers.tracepath.parse(output.stdout.decode())
-        tracepath_output["tracepath_timestamp"] = time.time()
-        TRACEPATH_LOG.info(json.dumps(tracepath_output))
-    except subprocess.CalledProcessError as error:
-        SENSOR_LOG.info("ERROR: %s", error)
-    except subprocess.TimeoutExpired as error:
-        SENSOR_LOG.info("ERROR: %s", error)
-
-
 def traceroute(dest: str) -> None:
     """Perform traceroute and print output."""
     try:
@@ -250,17 +230,6 @@ def init_logs() -> List[str]:
         PING_LOG.addHandler(ping_log_filehandler)
         logs_started.append("ping")
 
-    if PROBES["tracepath"] or PROBES["all"]:
-        filename = log_path + CONFIG["logging"]["probes"]["tracepath"]
-        global TRACEPATH_LOG
-        TRACEPATH_LOG = logging.getLogger("tracepath")
-        TRACEPATH_LOG.setLevel(logging.INFO)
-        tracepath_log_filehandler = logging.FileHandler(filename)
-        tracepath_log_filehandler.setLevel(logging.INFO)
-        tracepath_log_filehandler.setFormatter(logging.Formatter())
-        TRACEPATH_LOG.addHandler(tracepath_log_filehandler)
-        logs_started.append("tracepath")
-
     if PROBES["traceroute"] or PROBES["all"]:
         filename = log_path + CONFIG["logging"]["probes"]["traceroute"]
         global TRACEROUTE_LOG
@@ -280,7 +249,6 @@ SENSOR_LOG = logging.getLogger("sensor")
 CURL_LOG = logging.getLogger("curl")
 DIG_LOG = logging.getLogger("dig")
 PING_LOG = logging.getLogger("ping")
-TRACEPATH_LOG = logging.getLogger("tracepath")
 TRACEROUTE_LOG = logging.getLogger("traceroute")
 
 
@@ -296,7 +264,6 @@ if __name__ == "__main__":
         "curl": [],
         "dig": [],
         "ping": [],
-        "tracepath": [],
         "traceroute": [],
     }
 
@@ -319,9 +286,6 @@ if __name__ == "__main__":
             p.start()
         for ping_dest in [*PROBES["ping"], *PROBES["all"]]:
             p = mp.Process(target=ping, args=(ping_dest["ip"],))
-            p.start()
-        for tracepath_dest in [*PROBES["tracepath"], *PROBES["all"]]:
-            p = mp.Process(target=tracepath, args=(tracepath_dest["ip"],))
             p.start()
         for traceroute_dest in [*PROBES["traceroute"], *PROBES["all"]]:
             p = mp.Process(target=traceroute, args=(traceroute_dest["ip"],))
