@@ -1,47 +1,47 @@
 {
-  "config": {
-    "config_file_source": [{
-      "use_remote_config": "false",
-      "source": "http://example/rnm-sensor.conf"
-    }],
-    "ping_destinations": [{
-        "destination": "1.1.1.1",
-        "description": "cloudflare"
-      },
-      {
-        "destination": "8.8.8.8",
-        "description": "google"
-      },
-      {
-        "destination": "9.9.9.9",
-        "description": "quad9"
-      }
+    "config_file_source": [
+        {
+            "source": "https://user:pass@hostname.tld/rnm/rnm-sensor-config.json",
+            "use_remote_config": false
+        }
     ],
-    "curl_destinations": [{
-        "destination": "https://www.cloudflare.com/",
-        "description": "cloudflare"
-      },
-      {
-        "destination": "https://www.google.com/",
-        "description": "google"
-      },
-      {
-        "destination": "https://www.quad9.net/",
-        "description": "quad9"
-      }
-    ],
-    "traceroute_destinations": [{
-        "destination": "1.1.1.1",
-        "description": "cloudflare"
-      },
-      {
-        "destination": "8.8.8.8",
-        "description": "google"
-      },
-      {
-        "destination": "9.9.9.9",
-        "description": "quad9"
-      }
+    "logging": {
+        "path": "/var/log/rnm-sensor/",
+        "probes": {
+            "curl": "curl.log",
+            "dig": "dig.log",
+            "ping": "ping.log",
+            "tracepath": "tracepath.log",
+            "traceroute": "traceroute.log"
+        },
+        "sensor": "rnm-sensor"
+    },
+    "targets": [
+        {
+            "description": "cloudflare",
+            "ip": "1.1.1.1",
+            "nameserver": "dig -t A cloudflare.com @1.1.1.1",
+            "probes": [
+                "all"
+            ],
+            "url": "https://www.cloudflare.com"
+        },
+        {
+            "description": "google",
+            "ip": "8.8.8.8",
+            "nameserver": "dig -t A google.com @8.8.8.8",
+            "probes": [
+                "ping",
+                "curl"
+            ],
+            "url": "https://www.google.com"
+        },
+        {
+            "description": "quad9",
+            "ip": "9.9.9.9",
+            "probes": [
+                "ping"
+            ]
+        }
     ]
-  }
 }

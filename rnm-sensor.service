@@ -10,7 +10,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=ubuntu
-ExecStart=/opt/rnm-sensor/rnm-sensor.sh
+ExecStart=/opt/rnm-sensor/rnm_sensor.py
 
 [Install]
 WantedBy=multi-user.target
