@@ -7,7 +7,6 @@ Features and fixes to be implemented:
   * Enable/Disable hostname mapping
 * A specific user for the runtime
 * Creation of ISO file
-* Inclusion of `tracepath` or `traceroute` metrics
 * Inclusion of `iperf` metrics
 * Inclusion of `flowgrind` metrics
 * Rewrite Logstash rules, to keep it all in Filebeat (by default)
