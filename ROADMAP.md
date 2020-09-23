@@ -1,5 +1,4 @@
 Features and fixes to be implemented:
-* Complete refactor of `rnm-sensor.sh` in Python
 * More settings, including:
   * JSON/YAML format
   * Inclusion of Filebeat configuration (and management of these)
